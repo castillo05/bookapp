@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from 'axios';
+import Suggestion from './conponent/suggestion';
+
 import {
   StyleSheet,
   Text,
@@ -12,8 +14,14 @@ import {
 import Constants from "expo-constants";
 
 function List (){
-  const URL='http://127.0.0.1:8000/api';
+  const URL='http://192.168.1.5:8000/api';
   const [books, setBooks]= useState();
+
+  renderItem = ({item}) => {
+    return (
+      <Suggestion {...item}/>
+    )
+  }
 
   const getBooks=()=>{
   return fetch(`${URL}/book`,{
@@ -23,7 +31,7 @@ function List (){
       'Content-Type': 'application/json'
     }}).then(ress=>ress.json()
     .then((json) => {
-      return console.log(json);
+      return setBooks(json)
     })
     ).catch(error=>{
       console.log(error)
@@ -34,14 +42,17 @@ function List (){
   useEffect(() => {
    getBooks();
   },[]);
+
   return(
     <View style={styles.container}>
      
-    <FlatList
-      data={books}
-      renderItem={({item}) => <Text style={styles.item}>{item.name}</Text>}
-      
-    />
+     <FlatList
+          keyExtractor={this.keyExtractor}
+          data={this.props.list}
+          ListEmptyComponent={this.renderEmtpy}
+          ItemSeparatorComponent={this.itemSeparator}
+          renderItem={this.renderItem}
+        />
    
   </View>
   )
