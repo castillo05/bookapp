@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_API = 'http://192.168.1.5:8000/api/';
+const BASE_API = 'http://secret-reaches-65710.herokuapp.com/web/api/';
 const create = axios.create({
   baseURL:BASE_API,
   responseType:'json'
@@ -33,14 +33,7 @@ class Api {
             'Content-Type': contentType
         }
       })
-      // const data=await axios.post(`${BASE_API}`,book,{
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'
-      //   }
-      // });
-
-      // return console.log('Libro Guardado')
+     
     } catch (error) {
       console.log(error)
     }
