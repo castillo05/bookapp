@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   SectionList,
   FlatList,
-  Button
+  Button,
 } from "react-native";
 import Constants from "expo-constants";
 
