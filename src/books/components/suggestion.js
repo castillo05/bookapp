@@ -3,37 +3,54 @@ import {
   View,
   Image,
   Text,
-  StyleSheet
+  StyleSheet,
+  Button,
 } from 'react-native';
+import Api from '../../../utils/api';
 
 function Suggestion(props) {
+
+  const deleted= async(id)=>{
+    const deleted= await Api.deleteBook(`book/${id}`,1,'delete');
+
+    if(deleted) {
+      alert('Eliminado')
+    }
+  }
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Image
+        {/* <Image
           style={styles.cover}
           source={
             require('../../../assets/education.png')
           }
-        />
-        <View style={styles.genre}>
-          {/* <Text style={styles.genreText}>{props.genres[0]}</Text> */}
-        </View>
+        /> */}
+       
       </View>
 
       <View style={styles.right}>
-        <Text style={styles.title}>{props.autor}</Text>
-        <Text style={styles.year}>{props.titulo}</Text>
-        <Text style={styles.title}>{props.descripcion}</Text>
+        <Text style={styles.title}>Autor: {props.autor}</Text>
+        <Text style={styles.year}>Titulo: {props.titulo}</Text>
+        <Text style={styles.title}>Descripción: {props.descripcion}</Text>
         {/* <Text style={styles.rating}>{props.rating} Estrellas</Text> */}
       </View>
+      <Button
+       title="Eliminar"
+       type="outline"
+       onPress={(e)=>deleted(props.id)}
+       style={styles.button}
+       color="orange"
+      ></Button>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+   
+    justifyContent:'space-around',
+    alignContent:'stretch',
   },
   genre: {
     position: 'absolute',
@@ -54,8 +71,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   right: {
-    paddingLeft: 10,
-    justifyContent: 'space-between',
+   
+   
   },
   title: {
     fontSize: 18,
@@ -69,7 +86,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     borderRadius: 5,
     overflow: 'hidden',
-    alignSelf: 'flex-start'
+   
   },
   rating: {
     color: '#6b6b6b',

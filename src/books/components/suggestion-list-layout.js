@@ -2,7 +2,7 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 function SuggestionListLayout(props) {

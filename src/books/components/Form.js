@@ -49,6 +49,8 @@ class Form extends Component {
                         }
                     })
                 },2000)
+
+                const books = await Api.getSuggestion();
               
             }
         } catch (error) {
@@ -84,44 +86,29 @@ class Form extends Component {
                 placeholder='Autor'
                 name="autor"
                 onChangeText={(val) => this.inputValueUpdate(val, 'autor')}
-                leftIcon={
-                    <Icon
-                    name='user'
-                    size={24}
-                    color='black'
-                    />
-                }
+                
                 />
                 {/*  */}
                 <Input
                 placeholder='Titulo del libro'
                 name="titulo"
                 onChangeText={(val) => this.inputValueUpdate(val, 'titulo')}
-                leftIcon={
-                    <Icon
-                    name='book'
-                    size={24}
-                    color='black'
-                    />
-                }
+               
                 />
                 {/*  */}
                 <Input
                 placeholder='Descripción'
                 name="descripcion"
                 onChangeText={(val) => this.inputValueUpdate(val, 'descripcion')}
-                leftIcon={
-                    <Icon
-                    name='list'
-                    size={24}
-                    color='black'
-                    />
-                }
+              
                 />
                 <Button
                     title="Guardar"
                     type="outline"
                     onPress={()=>this.submit()}
+                    style={styles.button}
+                    color="purple"
+                    
                 />
 
             <Text style={styles.alert}>{this.state.alert.status ? this.state.alert.text : null}</Text>
@@ -158,6 +145,11 @@ const styles = StyleSheet.create({
         fontSize:20,
         marginTop:10,
         padding:10    
+    },
+    button:{
+        padding:10,
+        marginTop:50,
+        color:'#0277bd',
     }
   })
   
